@@ -130,8 +130,8 @@ class GalleryPost < Post
     # Liquid templates.
     #
     # Returns <Hash>
-    def to_liquid
-        super.deep_merge({
+    def to_liquid(*args)
+        super(*args).deep_merge({
             "last"  => self.last,
             "first" => self.first,
             "image" => self.image_url,

@@ -10,10 +10,12 @@ Installation
 
 In the directory containing you're Jekyll site:
 
-* Add `gallery.rb` to the `_plugins` folder of your Jekyll site. 
+* Add `gallery.rb` to the `_plugins` folder of your Jekyll site.
 * Add a layout `gallery_post.html` to the `_layouts` folder (or copy the example from this folder.
 
 To enable the use of exif information to automatically identify photo dates you must install the gem [exifr](http://exifr.rubyforge.org/).
+
+To enable the image resizing you must install the gem [rmagick](http://rmagick.rubyforge.org/).
 
 Features
 --------
@@ -52,6 +54,8 @@ Gallery configuration options available in `_config.yaml`:
 * `gallery_layout` - Set the layout to use for gallery posts. (default: `gallery_post.html`)
 
 * `gallery_permalink_style` - Similar to `permalink`, controls the URLs that gallery posts are generated with. See Jeykll docs [Permalinks](https://github.com/mojombo/jekyll/wiki/Permalinks) page. (default: `/gallery/:categories/:title.html`)
+
+* `gallery_image_geometry` - Specify a geometry for generated gallery images
 
 Todo
 ----

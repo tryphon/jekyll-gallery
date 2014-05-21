@@ -1,4 +1,5 @@
 begin; require 'exifr'; rescue LoadError; end
+begin; require 'RMagick'; rescue LoadError; end
 
 # core extensions
 # ------------------------------------------------------------------------------
@@ -135,7 +136,19 @@ class GalleryPost < Post
 
         imageDest = destination(dest)
         imageDest = File.join(File.dirname(imageDest), self.image)
-        FileUtils.cp source, imageDest
+
+        if resize?
+          target_geometry = site.config['gallery_image_geometry']
+          Magick::Image.read(source).first.change_geometry(target_geometry) do |cols, rows, img|
+            img.resize cols, rows
+          end.write imageDest
+        else
+          FileUtils.cp source, imageDest
+        end
+    end
+
+    def resize?
+      defined?(Magick) and site.config.key?('gallery_image_geometry')
     end
 
     def html?; true; end
